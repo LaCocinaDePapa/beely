@@ -7,7 +7,7 @@ import { Register } from './pages/Register'
 import { Footer } from './components/Footer'
 import { NotFound } from './pages/NotFound'
 import { DashboardLayout } from './dashboard/DashboardLayout'
-import { Dashboard } from './dashboard/Dashboard'
+import { Links } from './components/Links'
 import { ProtectedRoute } from './routes'
 import UserProfileUpdateWithQR from './components/UserProfileUpdate'
 import { AuthProvider } from './context/AuthContext'
@@ -28,7 +28,7 @@ const App = () => {
             {/* Protected routes with shared layout */}
             <Route>
               <Route path='dashboard' element={<DashboardLayout />}>
-                <Route index element={<Dashboard />} />
+                <Route index element={<Links />} />
                 <Route path='settings' element={<UserProfileUpdateWithQR />} />
               </Route>
             </Route>

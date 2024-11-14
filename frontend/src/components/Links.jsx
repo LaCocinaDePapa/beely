@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-export const Dashboard = () => {
+export const Links = () => {
 
     const message = ''
 
