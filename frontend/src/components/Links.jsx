@@ -11,9 +11,9 @@ export const Links = () => {
                    message &&  message !== '' ? (
                         <h4>{message}</h4>
                     ) : (
-                        <div className="flex flex-col items-center">
+                        <div className='flex flex-col items-center'>
                             <p className='mb-4 opacity-50'>No links shortened, yet...</p>
-                            <Button variant="transparent">Create new link</Button>
+                            <Button className='transition ease-in-out hover:bg-neutral-800' variant='transparent'>Create new link</Button>
                         </div>
                     )
                 }

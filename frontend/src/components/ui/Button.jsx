@@ -1,9 +1,12 @@
 export const Button = ({ 
-    children, 
-    onClick,
-    type,
-    variant = 'secondary', 
-    size = 'md' }) => {
+  children, 
+  onClick,
+  type,
+  variant = 'secondary', 
+  size = 'md',
+  className = '',
+  ...props
+}) => {
 
   // Base styles
   const baseStyles = 'px-5 py-1 w-full flex justify-center mx-auto rounded'
@@ -30,7 +33,8 @@ export const Button = ({
     <button
       type={type}
       onClick={onClick}
-      className={`${baseStyles} ${variants[variant]} ${sizeVariants[size]}`}
+      className={`${baseStyles} ${variants[variant]} ${sizeVariants[size]} ${className}`}
+      {...props}
     >
       {children}
     </button>
