@@ -12,8 +12,11 @@ export const Links = () => {
                         <h4>{message}</h4>
                     ) : (
                         <div className='flex flex-col items-center'>
-                            <p className='mb-4 opacity-50'>No links shortened, yet...</p>
-                            <Button className='transition ease-in-out hover:bg-neutral-800' variant='transparent'>Create new link</Button>
+                            <div>
+                                <img className="mx-auto size-14" src='/empty-box.svg' alt='empty box' />
+                                <p className='mt-2 mb-4 opacity-50'>No links shortened, yet...</p>
+                            </div>
+                            <Button className='transition ease-in-out dark:hover:bg-neutral-800' variant='transparent'>Create new link</Button>
                         </div>
                     )
                 }
