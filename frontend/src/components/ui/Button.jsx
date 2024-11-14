@@ -14,7 +14,8 @@ export const Button = ({
     secondary: 'bg-blue-600',
     danger: 'bg-red-700',
     outlined: 'outline outline-pink-700',
-    exotic: 'bg-indigo-700'
+    exotic: 'bg-indigo-700',
+    transparent: 'bg-transparent border rounded-md border-zinc-500'
   }
 
   const sizeVariants = {

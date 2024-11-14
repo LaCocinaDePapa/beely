@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Button } from "./ui/Button"
 
 export const Links = () => {
 
@@ -12,8 +12,8 @@ export const Links = () => {
                         <h4>{message}</h4>
                     ) : (
                         <div className="flex flex-col items-center">
-                            <p className='opacity-50'>No links shortened, yet...</p>
-                            <Link className='' to='#'>Create a new link</Link>
+                            <p className='mb-4 opacity-50'>No links shortened, yet...</p>
+                            <Button variant="transparent">Create new link</Button>
                         </div>
                     )
                 }
