@@ -6,7 +6,7 @@ import { ToggleTheme } from "./ToggleTheme"
 export const Navbar = () => {
 
   return (
-    <header className="border-b border-zinc-800">
+    <header className="border-b bg-neutral-900 border-zinc-800">
       <nav className="h-16 px-4 m-auto max-w-screen-2xl">
         <ul className="flex items-center justify-between h-full gap-32">
           <li>
