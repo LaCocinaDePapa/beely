@@ -21,7 +21,7 @@ export const Navbar = () => {
               <a 
                 target="_blank"
                 rel="noopener" 
-                href="https://github.com/302founddev/beeurl"
+                href="https://github.com/LaCocinaDePapa/beely"
               >
                 <span className="flex items-center gap-2">
                   <FaSquareGithub className="flex size-6" />
