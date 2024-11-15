@@ -23,7 +23,7 @@ export const Navbar = () => {
                 rel="noopener" 
                 href="https://github.com/302founddev/beeurl"
               >
-                <span>
+                <span className="flex items-center gap-2">
                   <VscGithub className="flex w-6 h-7" />
                 </span>
               </a>

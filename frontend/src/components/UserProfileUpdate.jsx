@@ -71,7 +71,7 @@ export default function UserProfileUpdateWithQR() {
                     id="firstName"
                     placeholder='your name here..'
                     autoComplete="given-name"
-                    className="w-3/4 px-4 py-2 mt-1 border-gray-300 rounded-md"
+                    className="w-full px-4 py-2 mt-1 border-gray-300 rounded-md"
                   />
                 </div>
 
@@ -85,7 +85,7 @@ export default function UserProfileUpdateWithQR() {
                     id="lastName"
                     placeholder='your lastname here...'
                     autoComplete="family-name"
-                    className="w-3/4 px-4 py-2 mt-1 border-gray-300 rounded-md"
+                    className="w-full px-4 py-2 mt-1 border-gray-300 rounded-md"
                   />
                 </div>
 
@@ -99,7 +99,7 @@ export default function UserProfileUpdateWithQR() {
                     id="email"
                     placeholder='& your email here...'
                     autoComplete="email"
-                    className="w-3/4 px-4 py-2 mt-1 border-gray-300 rounded-md"
+                    className="w-full px-4 py-2 mt-1 border-gray-300 rounded-md"
                   />
                 </div>
               </div>
