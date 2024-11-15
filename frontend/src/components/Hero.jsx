@@ -5,7 +5,7 @@ export const Hero = () => {
 
   return (
     <section className="px-8">
-      <div className="flex justify-center mt-48 mb-4 md:mb-9">
+      <div className="flex justify-center mt-16 mb-4 md:mb-9 lg:mt-48 md:mt-40">
         <h1 className="mx-auto text-4xl font-extrabold text-center text-black md:text-5xl lg:text-6xl dark:text-white">Streamline Your URL Management</h1>
       </div>
       <div>

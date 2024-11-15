@@ -4,7 +4,7 @@ export const Footer = () => {
 
   return (
     <section className="w-full text-black border-t border-zinc-800 dark:text-neutral-100">
-      <footer className="flex justify-between px-4 py-6 mx-auto opacity-75 max-w-screen-2xl">
+      <footer className="flex flex-col justify-between gap-2 px-4 py-6 mx-auto opacity-75 max-w-screen-2xl lg:flex-row md:flex-row">
         <div>
           Made with <span className="text-red-600">:love</span> by <a className="hover:underline hover:opacity-85" href="https://github.com/302founddev" target='_blank' rel='noopener noreferer'>302FoundDev</a>
         </div>

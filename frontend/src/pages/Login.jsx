@@ -27,7 +27,7 @@ export const Login = () => {
     <section className='flex justify-center px-4 mt-28 min-h-min sm:px-6 lg:px-8 lg:mt-40'>
       <div className='w-full max-w-md'>
         <div>
-          <img src="/bee.webp" alt="logo" className='mx-auto size-12' />
+          <img src="/bee.svg" alt="logo" className='mx-auto size-12' />
           <h2 className='mt-2 text-3xl font-extrabold text-center text-blue-600 dark:text-white'>
             Login into your account
           </h2>

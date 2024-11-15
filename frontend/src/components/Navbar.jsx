@@ -1,4 +1,4 @@
-import { VscGithub } from "react-icons/vsc"
+import { FaSquareGithub } from "react-icons/fa6"
 import UserBtn from "./UserBtn"
 import { ToggleTheme } from "./ToggleTheme"
 
@@ -8,10 +8,10 @@ export const Navbar = () => {
   return (
     <header className="border-b bg-neutral-900 border-zinc-800">
       <nav className="h-16 px-4 m-auto max-w-screen-2xl">
-        <ul className="flex items-center justify-between h-full gap-32">
+        <ul className="flex items-center justify-between h-full">
           <li>
             <a className="flex items-center justify-center gap-1 transition ease-in-out hover:opacity-70" href="/">
-              <img className="size-9" src="/bee.svg" alt="beeurl logo" />
+              <img className="w-[36px] h-[36px]" src="/bee.svg" alt="beeurl logo" />
               <span className="hidden text-2xl font-semibold lg:flex">bee.ly</span>
             </a>
           </li>
@@ -24,12 +24,12 @@ export const Navbar = () => {
                 href="https://github.com/302founddev/beeurl"
               >
                 <span className="flex items-center gap-2">
-                  <VscGithub className="flex w-6 h-7" />
+                  <FaSquareGithub className="flex size-6" />
                 </span>
               </a>
             </li>
 
-            <div class="flex flex-col justify-center">
+            <div>
               <ToggleTheme />
             </div>
 
