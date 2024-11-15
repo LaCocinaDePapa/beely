@@ -20,7 +20,7 @@ export const ToggleTheme = () => {
         <>
 
             <form>
-                <select onChange={handleChange} value={selectedTheme} className="px-2 py-1 mx-auto rounded-md">
+                <select onChange={handleChange} value={selectedTheme} className="px-2 py-1 mx-auto bg-neutral-900">
                     <option value="light">light</option>
                     <option value="dark">dark</option>
                 </select>
