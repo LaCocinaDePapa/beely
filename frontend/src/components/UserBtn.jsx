@@ -18,7 +18,7 @@ function UserBtn() {
     if (isAuthenticated)
         return (
             <>
-                <h2>Hola, {user?.name}</h2>
+                <h2>Bienvenido, {user?.name}</h2>
             </>
         )
 }
