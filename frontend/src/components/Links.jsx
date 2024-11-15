@@ -16,7 +16,10 @@ export const Links = () => {
                                 <img className="mx-auto size-14" src='/empty-box.svg' alt='empty box' />
                                 <p className='mt-2 mb-4 opacity-50'>No links shortened, yet...</p>
                             </div>
-                            <Button className='transition ease-in-out dark:hover:bg-neutral-800' variant='transparent'>Create new link</Button>
+                            <Button className='flex items-center gap-1 transition ease-in-out dark:hover:bg-neutral-800' variant='transparent'>
+                                <img className="size-5" src="/plus.svg" alt="plus icon" />
+                                Create new link
+                            </Button>
                         </div>
                     )
                 }
