@@ -1,9 +1,9 @@
 import { Navigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { EyeButton } from '../components/EyeButton'
-import { Button } from '../components/ui/Button'
 import { useAuth } from '../context/AuthContext'
 import { Link } from 'react-router-dom'
+import { Button } from '../components/ui/Button'
 
 
 export const Login = () => {
