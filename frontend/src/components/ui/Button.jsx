@@ -4,7 +4,7 @@ export const Button = ({
   type,
   variant = 'secondary', 
   size = 'md',
-  className = '',
+  className = 'w-full'
 }) => {
 
   const baseStyles = 'px-5 py-1 rounded-md transition ease-in-out'
