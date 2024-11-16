@@ -18,7 +18,11 @@ function UserBtn() {
     if (isAuthenticated)
         return (
             <>
-                <h2>Bienvenido, {user?.name}</h2>
+                <div className="cursor-pointer avatar">
+                    <div className="z-10 w-8 rounded-full ring-primary ring-offset-base-100 ring ring-offset-2">
+                        <img className="rounded-full" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                    </div>
+                </div>
             </>
         )
 }

@@ -1,12 +1,12 @@
-import { VscGithub } from "react-icons/vsc"
+import { FaSquareGithub } from "react-icons/fa6"
 
 export const Hero = () => {
 
 
   return (
     <section className="px-8">
-      <div className="flex justify-center mt-16 mb-4 md:mb-9 lg:mt-48 md:mt-40">
-        <h1 className="mx-auto text-4xl font-extrabold text-center text-black md:text-5xl lg:text-6xl dark:text-white">Streamline Your URL Management</h1>
+      <div className="flex justify-center mt-16 md:mb-7 lg:mt-48 md:mt-40">
+        <h1 className="text-[33px] font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-pink-600 to-purple-600 md:text-[50px] lg:text-[70px]">Streamline Your URL Management</h1>
       </div>
       <div>
         <div className="flex w-full mx-auto text-lg text-center text-black text-pretty md:max-w-4xl lg:max-w-4xl lg:text-xl dark:text-white">
@@ -22,7 +22,8 @@ export const Hero = () => {
             className="flex items-center justify-center max-w-52 transition mx-auto gap-2 rounded-md px-5 py-1.5 bg-indigo-700 hover:bg-indigo-800 text-lg"
           >
             Star on GitHub
-            <VscGithub />
+            <FaSquareGithub />
+            
           </a>
         </article>
 
