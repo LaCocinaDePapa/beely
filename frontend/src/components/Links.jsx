@@ -16,7 +16,7 @@ export const Links = () => {
                                 <img className="mx-auto size-14" src='/empty-box.svg' alt='empty box' />
                                 <p className='mt-2 mb-4 opacity-50'>No links shortened, yet...</p>
                             </div>
-                            <Button className='flex items-center gap-1.5 transition ease-in-out dark:hover:bg-neutral-800' variant='transparent'>
+                            <Button data-modal-target="default-modal" data-modal-toggle="default-modal" className='flex items-center gap-1.5 dark:hover:bg-neutral-800' variant='transparent'>
                                 <img className="size-4" src="/plus.svg" alt="plus icon" />
                                 Create new link
                             </Button>
