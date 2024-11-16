@@ -19,7 +19,8 @@ export const Button = ({
     danger: 'bg-red-700 hover:bg-red-800',
     outlined: 'border-2 border-pink-700 hover:bg-pink-700 hover:text-white',
     exotic: 'bg-indigo-700 hover:bg-indigo-800',
-    transparent: 'bg-transparent border rounded-md border-zinc-500 hover:bg-neutral-800'
+    transparent: 'bg-transparent border border-zinc-500 hover:bg-neutral-800',
+    neutral900: 'bg-neutral-900 border border-zinc-500 hover:bg-neutral-800'
   }
 
   const sizeVariants = {

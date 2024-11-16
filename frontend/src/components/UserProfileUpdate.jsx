@@ -106,7 +106,7 @@ export default function UserProfileUpdateWithQR() {
               </div>
               <div className="mt-8">
                 <Button
-                  variant='transparent'
+                  variant='neutral900'
                   type="submit"
                   className="inline-flex items-center justify-center gap-1 w-full text-[15px] px-2 py-2 text-white rounded-md transition ease-in-out lg:w-40"
                 >
