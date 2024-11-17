@@ -32,12 +32,28 @@ export const Register = () => {
           <img className="mr-2 size-10" src="/bee.svg" alt="logo" />
           Bee.ly
         </a>
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <div className="w-full bg-transparent rounded-md shadow dark:border sm:max-w-md xl:p-0 dark:border-neutral-800">
+          <div className="p-4 space-y-4 md:space-y-6">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Create an account
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Full name
+                </label>
+                <input
+                  type="name"
+                  name="name"
+                  id="name"
+                  className="block w-full p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-50 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="full name"
+                  required
+                />
+              </div>
               <div>
                 <label
                   htmlFor="email"
@@ -121,7 +137,7 @@ export const Register = () => {
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Already have an account?{" "}
                 <Link
-                  href="/signin"
+                  to="/signin"
                   className="font-medium text-blue-500 hover:underline"
                 >
                   Sign in
