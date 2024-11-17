@@ -1,29 +1,33 @@
 import { FaSquareGithub } from "react-icons/fa6"
 import UserBtn from "./UserBtn"
 import { ToggleTheme } from "./ToggleTheme"
+import { Link } from "react-router-dom"
 
 
 export const Navbar = () => {
 
   return (
     <header className="border-b bg-neutral-900 border-zinc-800">
-      <nav className="h-16 px-4 m-auto max-w-screen-2xl">
-        <ul className="flex items-center justify-between h-full">
+      <nav className="px-4 m-auto max-w-screen-2xl h-16">
+        <ul className="flex justify-between items-center h-full">
           <li>
-            <a className="flex items-center justify-center gap-1 transition ease-in-out hover:opacity-70" href="/">
+            <Link
+              to="/"
+              className="flex gap-1 justify-center items-center transition ease-in-out hover:opacity-70"
+            >
               <img className="w-[36px] h-[36px]" src="/bee.svg" alt="beeurl logo" />
               <span className="hidden text-2xl font-semibold lg:flex">bee.ly</span>
-            </a>
+            </Link>
           </li>
 
-          <div className="flex items-center gap-4">
+          <div className="flex gap-4 items-center">
             <li>
-              <a 
+              <a
                 target="_blank"
-                rel="noopener" 
+                rel="noopener"
                 href="https://github.com/LaCocinaDePapa/beely"
               >
-                <span className="flex items-center gap-2">
+                <span className="flex gap-2 items-center">
                   <FaSquareGithub className="flex size-6" />
                 </span>
               </a>
@@ -34,7 +38,7 @@ export const Navbar = () => {
             </div>
 
             <li>
-             <UserBtn />
+              <UserBtn />
             </li>
 
           </div>

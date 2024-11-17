@@ -1,18 +1,24 @@
-import { IoSaveOutline } from "react-icons/io5";
-import { Button } from "./ui/Button";
+import { IoSaveOutline } from "react-icons/io5"
+import { Button } from "./ui/Button"
+import { motion } from "framer-motion"
 
 export default function UserProfileUpdateWithQR() {
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    console.log("Profile updated:", userData);
-    alert("Profile update successfully");
-  };
+    console.log("Profile updated:", userData)
+    alert("Profile update successfully")
+  }
 
   return (
-    <div className="mt-8 bg-transparent">
+    <motion.div
+      className="mt-8 bg-transparent"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "linear" }}
+    >
       <div className="px-4 mx-auto space-y-8 max-w-screen-2xl">
-        <div className="overflow-hidden border rounded-md shadow border-zinc-300 dark:border-neutral-800 bg-neutral-100 dark:bg-transparent sm:rounded-lg">
+        <div className="overflow-hidden rounded-md border shadow border-zinc-300 dark:border-neutral-800 bg-neutral-100 dark:bg-transparent sm:rounded-lg">
           <div className="px-4 py-5 sm:px-6">
             <h2 className="text-3xl font-semibold leading-6 text-gray-900 dark:text-white">
               General
@@ -89,7 +95,7 @@ export default function UserProfileUpdateWithQR() {
           </div>
         </div>
 
-        <div className="px-5 py-5 border rounded-md shadow border-neutral-800">
+        <div className="px-5 py-5 rounded-md border shadow border-neutral-800">
           <div>
             <h2 className="text-3xl font-semibold">Account</h2>
             <p className="mt-3 text-sm text-gray-700 dark:text-gray-400">
@@ -97,10 +103,10 @@ export default function UserProfileUpdateWithQR() {
             </p>
           </div>
 
-          <div className="w-full gap-2 mt-8">
+          <div className="gap-2 mt-8 w-full">
             <h4>Delete account:</h4>
             <Button
-              className="inline-flex items-center justify-center w-full gap-2 py-2 mx-0 mt-2 text-white md:w-48 lg:w-48"
+              className="inline-flex gap-2 justify-center items-center py-2 mx-0 mt-2 w-full text-white md:w-48 lg:w-48"
               variant="danger"
             >
               Delete account
@@ -109,6 +115,6 @@ export default function UserProfileUpdateWithQR() {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </motion.div>
+  )
 }

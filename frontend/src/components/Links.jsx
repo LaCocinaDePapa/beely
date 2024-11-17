@@ -1,11 +1,17 @@
 import { Modal } from "./Modal"
+import { motion } from "framer-motion"
 
 export const Links = () => {
   const message = "";
 
   return (
     <main className="mx-auto max-w-screen-2xl text-black dark:text-white">
-      <div className="mt-24">
+      <motion.div
+        className="mt-24"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "linear" }}
+      >
         {message && message !== "" ? (
           <h4>{message}</h4>
         ) : (
@@ -24,7 +30,7 @@ export const Links = () => {
             </div>
           </div>
         )}
-      </div>
+      </motion.div>
     </main>
   )
 }

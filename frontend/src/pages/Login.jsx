@@ -1,30 +1,37 @@
-import { Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { EyeButton } from "../components/EyeButton";
-import { useAuth } from "../context/AuthContext";
-import { Link } from "react-router-dom";
-import { Button } from "../components/ui/Button";
+import { Navigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { EyeButton } from "../components/EyeButton"
+import { useAuth } from "../context/AuthContext"
+import { Link } from "react-router-dom"
+import { Button } from "../components/ui/Button"
+import { motion } from "framer-motion"
 
 export const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const { signin, isAuthenticated } = useAuth();
+  const [showPassword, setShowPassword] = useState(false)
+  const { signin, isAuthenticated } = useAuth()
 
   useEffect(() => {
-    if (isAuthenticated) <Navigate to="/dashboard" />;
-  }, [isAuthenticated]);
+    if (isAuthenticated) <Navigate to="/dashboard" />
+  }, [isAuthenticated])
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    const fields = Object.fromEntries(new FormData(event.target));
-    const { email, password } = fields;
+    const fields = Object.fromEntries(new FormData(event.target))
+    const { email, password } = fields
 
-    await signin({ email, password });
-  };
+    await signin({ email, password })
+  }
 
   return (
     <section>
-      <div className="flex flex-col items-center justify-center px-6 mx-auto mt-8 lg:mt-24 md:mt-24">
+      <motion.div
+
+        className="flex flex-col justify-center items-center px-6 mx-auto mt-8 lg:mt-24 md:mt-24"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "linear" }}
+      >
         <a
           href="/"
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
@@ -34,7 +41,7 @@ export const Login = () => {
         </a>
         <div className="w-full bg-transparent rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:border-neutral-800">
           <div className="p-4 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            <h1 className="text-xl font-bold tracking-tight leading-tight text-gray-900 md:text-2xl dark:text-white">
               Welcome back
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
@@ -49,7 +56,7 @@ export const Login = () => {
                   type="email"
                   name="email"
                   id="email"
-                  className="block w-full p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-50 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="block p-2 w-full text-gray-900 bg-gray-50 rounded-md border border-gray-300 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="name@company.com"
                   required
                 />
@@ -66,18 +73,18 @@ export const Login = () => {
                   name="password"
                   id="password"
                   placeholder="••••••••"
-                  className="block w-full p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-50 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="block p-2 w-full text-gray-900 bg-gray-50 rounded-md border border-gray-300 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                 />
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex justify-between items-center">
                 <div className="flex items-start">
                   <div className="flex items-center h-5">
                     <input
                       id="remember"
                       aria-describedby="remember"
                       type="checkbox"
-                      className="w-4 border border-gray-300 rounded h-14 bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                      className="w-4 h-14 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                       required
                     />
                   </div>
@@ -114,7 +121,7 @@ export const Login = () => {
             </form>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
-  );
-};
+  )
+}
