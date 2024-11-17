@@ -12,7 +12,7 @@ export default function UserProfileUpdateWithQR() {
   return (
     <div className="mt-8 bg-transparent">
       <div className="px-4 mx-auto space-y-8 max-w-screen-2xl">
-        <div className="overflow-hidden border rounded-md shadow border-zinc-300 dark:border-zinc-800 bg-neutral-100 dark:bg-transparent sm:rounded-lg">
+        <div className="overflow-hidden border rounded-md shadow border-zinc-300 dark:border-neutral-800 bg-neutral-100 dark:bg-transparent sm:rounded-lg">
           <div className="px-4 py-5 sm:px-6">
             <h2 className="text-3xl font-semibold leading-6 text-gray-900 dark:text-white">
               General
@@ -37,7 +37,7 @@ export default function UserProfileUpdateWithQR() {
                     id="firstName"
                     placeholder="your name here.."
                     autoComplete="given-name"
-                    className="px-4 py-[5px] w-full lg:w-[800px] mt-1 bg-transparent border border-gray-300 rounded-md"
+                    className="px-4 py-[5px] w-full lg:w-[800px] mt-1 bg-transparent border border-neutral-800 rounded-md"
                   />
                 </div>
 
@@ -54,7 +54,7 @@ export default function UserProfileUpdateWithQR() {
                     id="lastName"
                     placeholder="your lastname here..."
                     autoComplete="family-name"
-                    className="px-4 py-[5px] w-full lg:w-[800px] mt-1 bg-transparent border border-gray-300 rounded-md"
+                    className="px-4 py-[5px] w-full lg:w-[800px] mt-1 bg-transparent border border-neutral-800 rounded-md"
                   />
                 </div>
 
@@ -71,7 +71,7 @@ export default function UserProfileUpdateWithQR() {
                     id="email"
                     placeholder="& your email here..."
                     autoComplete="email"
-                    className="px-4 py-[5px] w-full lg:w-[800px] mt-1 bg-transparent border border-gray-300 rounded-md"
+                    className="px-4 py-[5px] w-full lg:w-[800px] mt-1 bg-transparent border border-neutral-800 rounded-md"
                   />
                 </div>
               </div>
@@ -89,7 +89,7 @@ export default function UserProfileUpdateWithQR() {
           </div>
         </div>
 
-        <div className="px-5 py-5 border border-gray-300 rounded-md shadow dark:border-zinc-800">
+        <div className="px-5 py-5 border rounded-md shadow border-neutral-800">
           <div>
             <h2 className="text-3xl font-semibold">Account</h2>
             <p className="mt-3 text-sm text-gray-700 dark:text-gray-400">
