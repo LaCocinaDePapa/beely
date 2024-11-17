@@ -20,7 +20,7 @@ export const Hero = () => {
             href="https://github.com/LaCocinaDePapa/beely"
             rel="noopener"
             target="_blank"
-            className="flex items-center justify-center max-w-52 transition mx-auto gap-2 rounded-md px-5 py-1.5 bg-indigo-700 hover:bg-indigo-800 text-lg"
+            className="flex items-center justify-center max-w-44 transition mx-auto gap-2 rounded-md px-5 py-1.5 bg-blue-700 hover:bg-blue-800 text-base"
           >
             Star on GitHub
             <FaSquareGithub />
