@@ -1,10 +1,10 @@
-import { Modal } from "./Modal";
+import { Modal } from "./Modal"
 
 export const Links = () => {
   const message = "";
 
   return (
-    <main className="mx-auto text-black dark:text-white max-w-screen-2xl">
+    <main className="mx-auto max-w-screen-2xl text-black dark:text-white">
       <div className="mt-24">
         {message && message !== "" ? (
           <h4>{message}</h4>
@@ -26,5 +26,5 @@ export const Links = () => {
         )}
       </div>
     </main>
-  );
-};
+  )
+}
