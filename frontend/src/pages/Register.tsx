@@ -1,26 +1,33 @@
 import { useEffect, useState } from "react"
 import { Navigate } from "react-router-dom"
 import { Button } from "../components/ui/Button"
-import { EyeButton } from "../components/EyeButton"
 import { useAuth } from "../context/AuthContext"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 
 export const Register = () => {
-  const [showPassword, setShowPassword] = useState(false)
   const { isAuthenticated, signup } = useAuth()
+  const [redirectToDashboard, setRedirectToDashboard] = useState(false)
+
 
   useEffect(() => {
-    if (isAuthenticated) <Navigate to="/dashboard" />
+    if (isAuthenticated) {
+      setRedirectToDashboard(true)
+    }
   }, [isAuthenticated])
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault()
 
     const fields = Object.fromEntries(new FormData(e.currentTarget))
     const { name, email, password } = fields
 
     await signup({ name, email, password })
+  }
+
+  // Redirigir a /dashboard si ya está autenticado
+  if (redirectToDashboard) {
+    return <Navigate to="/dashboard" />
   }
 
   return (
@@ -46,17 +53,17 @@ export const Register = () => {
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
-                  htmlFor="email"
+                  htmlFor="name"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Full name
                 </label>
                 <input
-                  type="name"
+                  type="text"
                   name="name"
                   id="name"
                   className="block p-2 w-full text-gray-900 bg-gray-50 rounded-md border border-gray-300 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="full name"
+                  placeholder="Full name"
                   required
                 />
               </div>
@@ -108,34 +115,20 @@ export const Register = () => {
                   required
                 />
               </div>
-              <div className="flex justify-between items-center">
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="terms"
-                      aria-describedby="terms"
-                      type="checkbox"
-                      className="w-4 h-14 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                      required
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label
-                      htmlFor="terms"
-                      className="text-gray-500 dark:text-gray-300"
-                    >
-                      I agree to the{" "}
-                      <a
-                        href="/terms"
-                        className="font-medium text-blue-500 hover:underline"
-                      >
-                        Terms and Conditions
-                      </a>
-                    </label>
-                  </div>
-                </div>
+              <div>
+                <label
+                  htmlFor="terms"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  I agree to the{" "}
+                  <a
+                    href="/terms"
+                    className="font-medium text-blue-500 hover:underline"
+                  >
+                    Terms and Conditions
+                  </a>
+                </label>
               </div>
-
               <Button type="submit" className="w-full py-2 text-[14.9px]">
                 Create your account
               </Button>
