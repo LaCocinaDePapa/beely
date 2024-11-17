@@ -25,7 +25,6 @@ export const Register = () => {
     await signup({ name, email, password })
   }
 
-  // Redirigir a /dashboard si ya está autenticado
   if (redirectToDashboard) {
     return <Navigate to="/dashboard" />
   }
