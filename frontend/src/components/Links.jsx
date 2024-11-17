@@ -1,4 +1,4 @@
-import { Button } from "./ui/Button"
+import { Modal } from "./Modal"
 
 export const Links = () => {
 
@@ -16,13 +16,9 @@ export const Links = () => {
                                 <img className="mx-auto size-14" src='/empty-box.svg' alt='empty box' />
                                 <p className='mt-2 mb-4 opacity-50'>No links shortened, yet...</p>
                             </div>
-                            <Button data-modal-target="default-modal" data-modal-toggle="default-modal" className='flex items-center gap-1.5 dark:hover:bg-neutral-800' variant='transparent'>
-                                <img className="size-4" src="/plus.svg" alt="plus icon" />
-                                Create new link
-                            </Button>
 
                             <div>
-                                
+                                <Modal />
                             </div>
 
                         </div>

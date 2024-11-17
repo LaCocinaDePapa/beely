@@ -1,4 +1,4 @@
-import '@fontsource-variable/onest';
+import '@fontsource-variable/onest'
 import { Route, Routes } from 'react-router-dom'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
