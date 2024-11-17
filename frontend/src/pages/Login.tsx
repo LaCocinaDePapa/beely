@@ -1,8 +1,6 @@
-import { Navigate } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { EyeButton } from "../components/EyeButton"
 import { useAuth } from "../context/AuthContext"
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { Button } from "../components/ui/Button"
 import { motion } from "framer-motion"
 
@@ -14,10 +12,14 @@ export const Login = () => {
     if (isAuthenticated) <Navigate to="/dashboard" />
   }, [isAuthenticated])
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault()
 
-    const fields = Object.fromEntries(new FormData(event.target))
+    const formData = new FormData(event.target)
+    const fields = {
+      email: formData.get('email') as string,
+      password: formData.get('password') as string
+    }
     const { email, password } = fields
 
     await signin({ email, password })
@@ -47,7 +49,7 @@ export const Login = () => {
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
-                  for="email"
+                  htmlFor="email"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Your email
@@ -63,7 +65,7 @@ export const Login = () => {
               </div>
               <div>
                 <label
-                  for="password"
+                  htmlFor="password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Password
@@ -90,7 +92,7 @@ export const Login = () => {
                   </div>
                   <div className="ml-3 text-sm">
                     <label
-                      for="remember"
+                      htmlFor="remember"
                       className="text-gray-500 dark:text-gray-300"
                     >
                       Remember me

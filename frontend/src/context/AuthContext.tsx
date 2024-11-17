@@ -1,7 +1,26 @@
-import { createContext, useContext, useState, useEffect } from "react"
+import { createContext, useContext, useState, useEffect, ReactNode } from "react"
 import Cookies from 'js-cookie'
 
-export const AuthContext = createContext()
+interface User {
+  id: string,
+  name: string,
+  email: string
+}
+
+interface AuthData {
+  email: string,
+  password: string
+}
+
+interface AuthContextType {
+  user: User | null
+  isAuthenticated: boolean
+  signin: (data: AuthData) => Promise<void>
+  signup: (data: AuthData) => Promise<void>
+  signout: () => Promise<void>
+}
+
+export const AuthContext = createContext<AuthContextType | null>(null)
 
 export const useAuth = () => {
   const context = useContext(AuthContext)
@@ -10,17 +29,20 @@ export const useAuth = () => {
   return context
 }
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null)
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+export function AuthProvider({ children }: AuthProviderProps) {
+  const [user, setUser] = useState<User | null>(null)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
-  const API_URL = import.meta.env.VITE_API_URL
-  const API_USER_URL = import.meta.env.VITE_API_USER_URL
+  // Reemplaza process.env por import.meta.env
+  const API_URL = import.meta.env.VITE_API_URL || ''
+  const API_USER_URL = import.meta.env.VITE_API_USER_URL || ''
 
-  const signin = async (data) => {
-    
+  const signin = async (data: AuthData) => {
     try {
-
       const response = await fetch(`${API_URL}/signin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -32,26 +54,18 @@ export function AuthProvider({ children }) {
 
       if (response.ok) {
         setIsAuthenticated(true)
-      }
-      
-      else {
+      } else {
         setIsAuthenticated(false)
         throw new Error(res.message || 'Error signing in')
       }
-
-    }
-    
-    catch (error) {
+    } catch (error) {
       console.error(error)
       throw error
     }
-
   }
 
-  const signup = async (data) => {
-
+  const signup = async (data: AuthData) => {
     try {
-
       const response = await fetch(`${API_USER_URL}/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -63,23 +77,16 @@ export function AuthProvider({ children }) {
 
       if (response.status === 200) {
         console.log(res)
-      }
-      
-      else {
+      } else {
         throw new Error(res.message || 'Error registering')
       }
-
-    }
-    
-    catch (error) {
+    } catch (error) {
       console.error(error)
       throw error
     }
-
   }
 
   const signout = async () => {
-
     const response = await fetch(`${API_URL}/signout`, {
       method: 'POST',
       credentials: 'include'
@@ -92,32 +99,24 @@ export function AuthProvider({ children }) {
   }
 
   const checkSession = async () => {
+    try {
+      const response = await fetch(`${API_URL}/check-auth`, {
+        method: 'GET',
+        credentials: 'include'
+      })
 
-      try {
+      const res = await response.json()
 
-        const response = await fetch(`${API_URL}/check-auth`, {
-          method: 'GET',
-          credentials: 'include'
-        })
-
-        const res = await response.json()
-
-        if (response.ok) {
-          setUser(res.user.user)
-          setIsAuthenticated(true)
-        }
-        
-        else {
-          setIsAuthenticated(false)
-        }
-        
-      }
-      
-      catch (error) {
-        console.error('Error checking session:', error)
+      if (response.ok) {
+        setUser(res.user.user)
+        setIsAuthenticated(true)
+      } else {
         setIsAuthenticated(false)
       }
-
+    } catch (error) {
+      console.error('Error checking session:', error)
+      setIsAuthenticated(false)
+    }
   }
 
   useEffect(() => {

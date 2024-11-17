@@ -2,7 +2,7 @@ import { Modal } from "./Modal"
 import { motion } from "framer-motion"
 
 export const Links = () => {
-  const message = "";
+  const message = ""
 
   return (
     <main className="mx-auto max-w-screen-2xl text-black dark:text-white">

@@ -1,15 +1,25 @@
 import clsx from 'clsx'
 
-export const Button = ({ 
-  children, 
+type ButtonProps = {
+  children: React.ReactNode
+  onClick?: () => void
+  type?: 'button' | 'submit' | 'reset'
+  variant?: 'primary' | 'secondary' | 'danger' | 'outlined' | 'exotic' | 'transparent' | 'neutral900'
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
+  className?: string
+  disabled?: boolean
+} & React.ButtonHTMLAttributes<HTMLButtonElement>
+
+export const Button = ({
+  children,
   onClick,
   type = 'button',
-  variant = 'secondary', 
+  variant = 'secondary',
   size = 'md',
   className = 'w-full',
   disabled = false,
   ...props
-}) => {
+}: ButtonProps) => {
 
   const baseStyles = 'px-5 py-1 rounded-md transition ease-in-out'
 

@@ -1,6 +1,6 @@
 import "@fontsource-variable/onest";
 import { Route, Routes } from "react-router-dom";
-import { Navbar } from "./components/Navbar";
+import { Navbar } from "./components/Navbar.jsx";
 import { Hero } from "./components/Hero";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
