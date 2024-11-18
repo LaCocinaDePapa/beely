@@ -21,7 +21,8 @@
     "express-types": "^0.0.4",
     "jsonwebtoken": "^9.0.2",
     "nanoid": "^5.0.7",
-    "pg": "^8.13.0"
+    "pg": "^8.13.0",
+    "swagger-jsdoc": "^6.2.8"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
