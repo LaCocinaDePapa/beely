@@ -1,15 +1,15 @@
-import "@fontsource-variable/onest";
-import { Route, Routes } from "react-router-dom";
-import { Navbar } from "./components/Navbar.jsx";
-import { Hero } from "./components/Hero";
-import { Login } from "./pages/Login";
-import { Register } from "./pages/Register";
-import { Footer } from "./components/Footer";
-import { NotFound } from "./pages/404/NotFound";
-import { DashboardLayout } from "./dashboard/DashboardLayout";
-import { Links } from "./components/Links";
-import { ProtectedRoute } from "./routes";
-import UserProfileUpdateWithQR from "./components/UserProfileUpdate";
+import "@fontsource-variable/onest"
+import { Route, Routes } from "react-router-dom"
+import { Navbar } from "./components/Navbar.jsx"
+import { Hero } from "./pages/Hero"
+import { Login } from "./pages/Login"
+import { Register } from "./pages/Register"
+import { Footer } from "./components/Footer"
+import { NotFound } from "./pages/404/NotFound"
+import { DashboardLayout } from "./dashboard/DashboardLayout"
+import { Links } from "./components/Links"
+import { ProtectedRoute } from "./routes"
+import UserProfileUpdateWithQR from "./components/UserProfileUpdate"
 
 const App = () => {
   return (
@@ -38,7 +38,7 @@ const App = () => {
       </Routes>
       <Footer />
     </main>
-  );
-};
+  )
+}
 
-export default App;
+export default App
