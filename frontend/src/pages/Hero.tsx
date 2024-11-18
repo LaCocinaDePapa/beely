@@ -19,7 +19,7 @@ export const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "linear" }}
       >
-        <div className="flex mx-auto w-full text-lg text-center text-black text-pretty md:max-w-4xl lg:max-w-4xl lg:text-xl dark:text-white">
+        <div className="flex w-full mx-auto text-lg text-center text-black text-pretty md:max-w-4xl lg:max-w-4xl lg:text-xl dark:text-white">
           BeeURL is a comprehensive, open-source tool specifically crafted to
           transform the way you handle links by providing a seamless and
           efficient approach to creating, organizing, and tracking URLs
@@ -30,7 +30,7 @@ export const Hero = () => {
             href="https://github.com/LaCocinaDePapa/beely"
             rel="noopener"
             target="_blank"
-            className="flex items-center justify-center max-w-44 transition mx-auto gap-2 rounded-md px-5 py-1.5 bg-blue-700 hover:bg-blue-800 text-base"
+            className="flex items-center justify-center gap-2 px-6 py-2 mx-auto text-base font-medium transition bg-blue-700 rounded-full max-w-48 hover:bg-blue-800"
           >
             Star on GitHub
             <FaSquareGithub />
@@ -38,5 +38,5 @@ export const Hero = () => {
         </article>
       </motion.div>
     </section>
-  );
-};
+  )
+}

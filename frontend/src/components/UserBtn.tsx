@@ -10,7 +10,7 @@ function UserBtn() {
       <>
         <Link
           to="signin"
-          className="flex text-sm items-center gap-2 px-4 py-1.5 rounded-md transition bg-blue-700 hover:bg-blue-800 lg:text-base"
+          className="flex items-center gap-2 px-6 py-1.5 font-semibold bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 rounded-full"
         >
           Get started
           <FaArrowRight className="w-3" />

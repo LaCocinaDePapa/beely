@@ -1,12 +1,12 @@
-import { FaSquareXTwitter, FaLink } from "react-icons/fa6"
+import { FaSquareXTwitter, FaLink, FaHeart } from "react-icons/fa6"
 
 export const Footer = () => {
 
   return (
     <section className="w-full text-black border-t border-zinc-800 dark:text-neutral-100">
-      <footer className="flex flex-col gap-2 justify-between px-4 py-6 mx-auto max-w-screen-2xl opacity-75 lg:flex-row md:flex-row">
-        <div>
-          Made with <span className="text-red-600">:love</span> by <a className="hover:underline hover:opacity-85" href="https://github.com/LaCocinaDePapa" target='_blank' rel='noopener noreferer'>LaCocinaDePapa</a>
+      <footer className="flex flex-col justify-between gap-2 px-4 py-6 mx-auto opacity-75 max-w-screen-2xl lg:flex-row md:flex-row">
+        <div className="inline-flex items-center gap-1">
+          Made with <span className="text-red-600"><FaHeart /></span> by <a className="hover:underline hover:opacity-85" href="https://github.com/LaCocinaDePapa" target='_blank' rel='noopener noreferer'>LaCocinaDePapa</a>
         </div>
         <div>
           <a
@@ -14,7 +14,7 @@ export const Footer = () => {
             rel="noopener"
             target="_blank"
           >
-            <span className="flex gap-1 items-center hover:opacity-75">
+            <span className="flex items-center gap-1 hover:opacity-75">
               <FaSquareXTwitter />
               Twitter
               <FaLink />
