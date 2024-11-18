@@ -22,10 +22,10 @@ function UserBtn() {
     return (
       <>
         <div className="cursor-pointer avatar">
-          <div className="z-10 w-8 rounded-full ring-primary ring-offset-base-100 ring ring-offset-2">
+          <div className="z-10 w-8 rounded-full ring ring-offset-2 ring-primary ring-offset-base-100">
             <img
               className="rounded-full"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+              src="http://www.w3.org/2000/svg"
             />
           </div>
         </div>
