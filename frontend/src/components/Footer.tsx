@@ -9,6 +9,9 @@ export const Footer = () => {
           Made with <span className="text-red-600"><FaHeart /></span> by <a className="hover:underline hover:opacity-85" href="https://github.com/LaCocinaDePapa" target='_blank' rel='noopener noreferer'>LaCocinaDePapa</a>
         </div>
         <div>
+          © 2024 <a href="https://github.com/302FoundDev" className="hover:underline hover:opacity-85">302foundev</a>. Almost all rights reserved
+        </div>
+        <div>
           <a
             href="https://x.com/302founddev"
             rel="noopener"
