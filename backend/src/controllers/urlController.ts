@@ -1,8 +1,21 @@
 import Url from '../models/urlModel.ts'
 
-export const shortUrl = async (req, res) => {
+interface Request {
+
+}
+
+interface Response {
+  status: (code: number) => {
+    send: (body: string) => void
+    json: (body: string) => void
+  }
+  message: string
+}
+
+export const shortUrl = async (req, res: Response) => {
+
   try {
-    // Validations
+
     let { originalUrl } = req.body
     if (!originalUrl) return res.status(400).send({ message: 'Original URL is required' })
 
@@ -18,9 +31,13 @@ export const shortUrl = async (req, res) => {
     const short = await Url.shortUrl(originalUrl, id)
 
     res.status(200).send({ message: 'URL has been shorted succesfully', result: short })
-  } catch (error) {
+
+  }
+  
+  catch (error) {
     throw new Error(error)
   }
+
 }
 
 export const redirectShortUrl = async (req, res) => {
