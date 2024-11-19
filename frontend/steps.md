@@ -61,6 +61,8 @@ class UserModel {
     return this.users.some(user => user.email === email);
   }
 
+  COMMENT
+
   static async create({ name, email, password }: CreateUserDTO): Promise<any> {
     const user = {
       id: `${this.users.length + 1}`, // Simulando un ID auto-incremental
