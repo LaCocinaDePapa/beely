@@ -1,18 +1,38 @@
 import AuthSesion from '../models/authModel.ts'
 
+interface Request {
+  body: { email: string; password: string };
+  user?: { email: string };
+  cookies?: { access_token?: string };
+}
+
+interface Response {
+  status: (code: number) => {
+    send: (body: any) => void;
+    json: (body: any) => void;
+  };
+  cookie: (name: string, value: string, options: Record<string, any>) => void;
+  clearCookie: (name: string) => void;
+}
+
+
 const validationErrors = (email: string, password: string) => {
-  const errors = {}
+  const errors: { [key: string]: string } = {}
 
-  if (typeof email !== 'string') errors.email = 'Email must be a string'
-  if (email === '') errors.email = 'Email should not be empty'
+  if (typeof email !== 'string' || !email.trim()) {
+    errors.email = 'Email should not be empty and must be a string'
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errors.email = 'Invalid email format'
+  }
 
-  if (password === '') errors.password = 'Password must be a string'
-  if (typeof password !== 'string') errors.password = 'Password must be a string'
+  if (typeof password !== 'string' || !password.trim()) {
+    errors.password = 'Password should not be empty and must be a string'
+  }
 
   return errors
 }
 
-export const login = async (req: { body: { email: any; password: any } }, res: { status: (arg0: number) => { (): any; new(): any; send: { (arg0: { message?: string }): void; new(): any } }; cookie: (arg0: string, arg1: any, arg2: { httpOnly: boolean; secure: boolean; sameSite: string; maxAge: number }) => void }) => {
+export const login = async (req, res) => {
   const { email, password } = req.body
 
   const validate = validationErrors(email, password)
@@ -29,7 +49,7 @@ export const login = async (req: { body: { email: any; password: any } }, res: {
 
     res.cookie('access_token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'development',
+      secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
       maxAge: 1000 * 120 * 120
     })
@@ -44,8 +64,8 @@ export const login = async (req: { body: { email: any; password: any } }, res: {
 
 }
 
-export const profile = async (req: { user: { email: any } }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { message: string }): any; new(): any } }; json: (arg0: { user: { user: { id: any; name: any; email: any }; urls: { original_url: any; shortened_url: any }[]; error?: undefined; message?: undefined } | { error: boolean; message: unknown; user?: undefined; urls?: undefined } }) => any }) => {
-  const { email } = req.user
+export const profile = async (req, res) => {
+  const { email }: { email: string } = req.user
 
   if (!email) return res.status(401).json({ message: 'User not found' })
 
@@ -53,7 +73,7 @@ export const profile = async (req: { user: { email: any } }, res: { status: (arg
   return res.json({ user: userProfile })
 }
 
-export const logout = async (req: { cookies: { access_token: any } }, res: { json: (arg0: { message: string }) => any; clearCookie: (arg0: string) => void; status: (arg0: number) => { (): any; new(): any; json: { (arg0: { message: string }): any; new(): any } } }) => {
+export const logout = async (req, res) => {
   const token = req.cookies.access_token
 
   if (!token) return res.json({ message: 'Session already closed' })
