@@ -1,27 +1,32 @@
 import AuthSesion from '../models/authModel.ts'
 
 interface Request {
-  body: { email: string; password: string };
-  user?: { email: string };
-  cookies?: { access_token?: string };
+  body: { email: string, password: string }
+  user?: { email: string }
+  cookies?: { access_token?: string }
 }
 
 interface Response {
   status: (code: number) => {
-    send: (body: any) => void;
-    json: (body: any) => void;
-  };
-  cookie: (name: string, value: string, options: Record<string, any>) => void;
-  clearCookie: (name: string) => void;
+    send: (body: any) => void
+    json: (body: any) => void
+  }
+  cookie: (name: string, value: string, options: Record<string, any>) => void
+  clearCookie: (name: string) => void
+  json: (body: any) => void
 }
 
+interface User {
+  token: string
+}
 
 const validationErrors = (email: string, password: string) => {
   const errors: { [key: string]: string } = {}
 
   if (typeof email !== 'string' || !email.trim()) {
     errors.email = 'Email should not be empty and must be a string'
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  }
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     errors.email = 'Invalid email format'
   }
 
@@ -32,7 +37,7 @@ const validationErrors = (email: string, password: string) => {
   return errors
 }
 
-export const login = async (req, res) => {
+export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body
 
   const validate = validationErrors(email, password)
@@ -44,7 +49,7 @@ export const login = async (req, res) => {
     const checkCreds = await AuthSesion.checkCredentials(email, password)
     if (!checkCreds) return res.status(400).send({ message: 'Invalid credentials' })
 
-    const user = await AuthSesion.login(email, password)
+    const user = await AuthSesion.login(email, password) as User
     const { token } = user
 
     res.cookie('access_token', token, {
@@ -54,27 +59,36 @@ export const login = async (req, res) => {
       maxAge: 1000 * 120 * 120
     })
 
-    res.status(200).send({ message: 'Login successfully' })
+    res.status(200).send({ message: 'Login successful' })
 
   }
   
   catch (error) {
+    console.error('Login error')
     res.status(500).send({ message: 'Server error' })
   }
 
 }
 
-export const profile = async (req, res) => {
-  const { email }: { email: string } = req.user
+export const profile = async (req: any, res: Response) => {
+  const { email } = req.user
 
-  if (!email) return res.status(401).json({ message: 'User not found' })
+  try {
+    const userProfile = await AuthSesion.profile(email)
 
-  const userProfile = await AuthSesion.profile(email)
-  return res.json({ user: userProfile })
+    if (!userProfile) return res.status(401).json({ message: 'User not found' })
+
+    return res.json({ user: userProfile })
+  } 
+
+  catch (error) {
+    console.error('Profile error: ', error)
+    res.status(500).json({ message: 'Server error' })
+  }
 }
 
-export const logout = async (req, res) => {
-  const token = req.cookies.access_token
+export const logout = async (req: Request, res: Response) => {
+  const token = req.cookies?.access_token
 
   if (!token) return res.json({ message: 'Session already closed' })
 
