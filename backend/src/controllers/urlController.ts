@@ -1,55 +1,69 @@
 import Url from '../models/urlModel.ts'
 
 interface Request {
-
+  params: { shortCode: string }
+  body: { originalUrl: string }
+  user: { id: string }
 }
 
 interface Response {
   status: (code: number) => {
-    send: (body: string) => void
-    json: (body: string) => void
+    send: (body: { message: string }) => void
+    json: (body: { message: string, result?: string }) => void
   }
-  message: string
+  redirect: (url: string) => void
 }
 
-export const shortUrl = async (req, res: Response) => {
+export const shortUrl = async (req: Request, res: Response) => {
 
   try {
-
     let { originalUrl } = req.body
-    if (!originalUrl) return res.status(400).send({ message: 'Original URL is required' })
-
-    const urlPattern = /^(https?:\/\/)/
-    if (!urlPattern.test(originalUrl)) originalUrl = `https://${originalUrl}`
-
     const id = req.user.id
     if (!id) return res.status(400).send({ message: 'ID is required' })
+    if (!originalUrl) return res.status(400).send({ message: 'Original URL is required' })
 
-    const url = await Url.existingUrl(originalUrl)
-    if (url) return res.status(400).send({ message: 'URL has been shortened for this user' })
+    // Asign https:// if url has not
+    const urlPattern = /^https?:\/\//
+    let url = originalUrl.trim()
 
-    const short = await Url.shortUrl(originalUrl, id)
+    if (!urlPattern.test(originalUrl)) {
+      url = `https://${url}`
+    }
 
-    res.status(200).send({ message: 'URL has been shorted succesfully', result: short })
+    // Check if url has already been shortened for the user
+    const existingUrl = await Url.existingUrl(url)
+    if (existingUrl) return res.status(400).send({ message: 'URL has already been shortened for this user' })
 
+
+    // Short url
+    const short = await Url.shortUrl(url, id)
+
+    res.status(200).json({ message: 'URL has already been shorted successfully', result: short })
   }
   
   catch (error) {
-    throw new Error(error)
+    console.error('Error creating short URL:', error)
+    return res.status(500).send({ message: 'Server error' })
   }
 
 }
 
-export const redirectShortUrl = async (req, res) => {
+export const redirectShortUrl = async (req: Request, res: Response) => {
+
   try {
     const { shortCode } = req.params
 
     const result = await Url.redirectShortUrl(shortCode)
+
     const url = result.original_url
     if (!url) return res.status(404).send({ message: 'URL not found' })
 
     return res.redirect(url)
-  } catch (error) {
-    throw new Error(error)
   }
+  
+  catch (error) {
+    console.error('Error redirecting short URL:', error)
+    return res.status(500).send({ message: 'Server error' })
+  }
+
 }
