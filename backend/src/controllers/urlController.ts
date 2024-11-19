@@ -34,7 +34,6 @@ export const shortUrl = async (req: Request, res: Response) => {
     const existingUrl = await Url.existingUrl(url)
     if (existingUrl) return res.status(400).send({ message: 'URL has already been shortened for this user' })
 
-
     // Short url
     const short = await Url.shortUrl(url, id)
 
