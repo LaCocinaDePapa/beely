@@ -1,6 +1,6 @@
-import pool from './database/database.ts'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import { Prisma } from '../../prismaService'
 
 export default class AuthSesion {
 

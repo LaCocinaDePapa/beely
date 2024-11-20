@@ -1,5 +1,5 @@
 import express from 'express'
-import { shortUrl, redirectShortUrl } from '../controllers/urlController.ts'
+import { shortUrl, redirectShortUrl } from '../controllers/url.controller.ts'
 import { authenticate } from '../middlewares/authenticate.ts'
 
 const router = express.Router()

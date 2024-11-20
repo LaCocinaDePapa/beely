@@ -19,6 +19,7 @@ model User {
   email String  @unique
   password  String
   urls  Url[]
+  createdAt DateTime @default(now())
 }
 
 model Url {
@@ -27,4 +28,5 @@ model Url {
   shortUrl  String  @unique
   userId  Int
   user  User  @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
 }
