@@ -30,11 +30,9 @@ export const profile = async (req: any, res: Response) => {
   const { email } = req.user
 
   try {
-    const userProfile = await AuthService.profile(email)
+    const userProfile = await AuthService.getProfile(email)
 
-    if (!userProfile) return res.status(401).json({ message: 'User not found' })
-
-    return res.json({ user: userProfile })
+    return res.json({ userData: userProfile })
   } 
 
   catch (error) {
@@ -48,6 +46,11 @@ export const logout = async (req: Request, res: Response) => {
 
   if (!token) return res.json({ message: 'Session already closed' })
 
-  res.clearCookie('access_token')
-  return res.status(200).json({ message: 'Session closed' })
+  res.clearCookie('access_token', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'development',
+    sameSite: 'strict'
+  })
+
+  return res.status(200).json({ message: 'Session closed successfully' })  
 }

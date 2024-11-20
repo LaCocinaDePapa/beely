@@ -19,6 +19,8 @@ export default class AuthService {
 
   static async login (email: string, password: string) {
 
+    const secret = process.env.JWT_SECRET_KEY!
+
     try {
 
       const checkCredentials = await this.checkCredentials(email, password)
@@ -33,7 +35,7 @@ export default class AuthService {
 
       const token = jwt.sign(
         { id: user?.id },
-        process.env.JWT_SECRET_KEY!,
+        secret,
         { expiresIn: '1h' }
       )
 
@@ -47,12 +49,16 @@ export default class AuthService {
   }
 
   static async getProfile(email: string) {
-    return prisma.user.findUnique({
+    const userProfile = await prisma.user.findUnique({
       where: { email },
       select: { id: true, email: true }
     })
-  }
 
-  static async logout() {}
+    if (!userProfile) {
+      throw new Error('User not found')
+    }
+
+    return userProfile
+  }
   
 }
