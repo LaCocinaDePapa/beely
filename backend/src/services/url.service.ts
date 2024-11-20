@@ -1,38 +1,55 @@
-import pool from './database/database.ts'
 import { nanoid } from 'nanoid'
+import prisma from '../prismaService'
 
 
-class Url {
-  static async existingUrl (originalUrl: string) {
+class UrlService {
+  static async existingUrl (originalUrl: string, ownerId: number) {
 
     try {
-      const query = 'SELECT * FROM urls WHERE original_url = $1'
-      const result = await pool.query(query, [originalUrl])
+      const existingUrl = await prisma.url.findFirst({
+        where: { 
+          originalUrl, 
+          userId: ownerId
+        }
+      })
 
-      return result.rows[0]
+      if (!existingUrl) {
+        throw new Error('Url already shortened')
+      }
+
+      return existingUrl
     }
     
     catch (error) {
-      return error
+      throw new Error(`Server error on check existing URL ${error}`)
     }
 
   }
 
-  static async shortUrl (originalUrl: string, id: string) {
+  static async shortUrl (originalUrl: string, ownerId: number) {
+    const urlPattern = /^https?:\/\//
+    let url = originalUrl.trim()
+
+    if (!urlPattern) {
+      url = `https://${url}`
+    }
+
     const shortCode = nanoid(7)
 
     try {
-      const query = 'INSERT INTO urls (original_url, shortened_url, owner_id) VALUES ($1, $2, $3) RETURNING *'
+      const newUrl = await prisma.url.create({
+        data: {
+          originalUrl: url,
+          shortUrl: shortCode,
+          userId: ownerId
+        }
+      })
 
-      const values = [originalUrl, shortCode, id]
-
-      const result = await pool.query(query, values)
-
-      return result.rows[0]
+      return newUrl
     }
     
     catch (error) {
-      return error
+      throw new Error(`Server error while shorting ${error}`)
     }
 
   }
@@ -40,17 +57,22 @@ class Url {
   static async redirectShortUrl (shortCode: string) {
 
     try {
-      const query = 'SELECT original_url FROM urls WHERE shortened_url = $1'
-      const result = await pool.query(query, [shortCode])
+      const urlRecord = await prisma.url.findUnique({
+        where: { shortUrl: shortCode }
+      })
 
-      return result.rows[0]
+      if (!urlRecord) {
+        throw new Error('Shortened URL not found')
+      }
+
+      return urlRecord
     }
     
     catch (error) {
-      return error
+      throw new Error(`Server error while redirecting ${error}`)
     }
     
   }
 }
 
-export default Url
+export default UrlService
