@@ -7,11 +7,10 @@ export const login = async (req: Request, res: Response) => {
 
   try {
 
-    const user = await AuthService.login(email, password)
-    const { token } = user
+    const user_token = await AuthService.login(email, password)
 
      res
-      .cookie('access_token', token, {
+      .cookie('access_token', user_token, {
         httpOnly: true, // Evitar acceso desde JavaScript
         secure: process.env.NODE_ENV === 'development', // Solo HTTPS en producción
         sameSite: 'strict',
