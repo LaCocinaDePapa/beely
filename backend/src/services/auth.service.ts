@@ -1,51 +1,47 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { Prisma } from '../../prismaService'
+import prisma from '../prismaService'
 
-export default class AuthSesion {
+export default class AuthService {
 
-  static async checkCredentials (email: string, password: string) {
-    try {
+  static async checkCredentials (email: string, password: string): Promise<boolean> {
 
-      const query = 'SELECT email, password FROM users WHERE email = $1'
-      const result = await pool.query(query, [email])
+    const user = await prisma.user.findUnique({
+      where: { email }
+    })
 
-      const user = result.rows[0]
-      if (!user) {
-        return user
-      }
+    if (!user) return false
 
-      const isMatch = await bcrypt.compare(password, user.password)
-
-      if (!isMatch) return false
-
-      return isMatch
-
-    }
-    
-    catch (error) {
-      return error
-    }
+    const isPasswordValid = await bcrypt.compare(password, user.password)
+    return isPasswordValid
 
   }
 
   static async login (email: string, password: string) {
 
     try {
+
+      const checkCredentials = await this.checkCredentials(email, password)
+
+      if (!checkCredentials) {
+        throw new Error('Invalid credentials')
+      }
+
+      const user = await prisma.user.findUnique({
+        where: { email }
+      })
+
       const token = jwt.sign(
-        { email },
-        process.env.JWT_SECRET_KEY,
+        { id: user?.id },
+        process.env.JWT_SECRET_KEY!,
         { expiresIn: '1h' }
       )
 
-      return {
-        token,
-        email
-      }
+      return token
     }
 
     catch (error) {
-      return error
+      throw new Error(`Internal error while login: ${error}`)
     }
 
   }
@@ -81,5 +77,7 @@ export default class AuthSesion {
       return { error: true, message: error }
     }
   }
+
+  static async logout() {}
   
 }

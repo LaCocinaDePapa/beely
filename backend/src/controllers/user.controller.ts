@@ -9,7 +9,7 @@ export const register = async (req: Request, res: Response) => {
 
   try {
     const user = await User.create(name, email, password)
-    return res.status(201).json({ message: 'User has been create successfully', result: user })
+    return user
   }
   
   catch (error) {

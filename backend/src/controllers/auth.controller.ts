@@ -1,59 +1,28 @@
-import AuthSesion from '../models/authModel.ts'
-import { validationErrors } from '../utils/validations.ts'
+import { Request, Response } from 'express'
+import AuthService from '../services/auth.service.ts'
 
-interface Request {
-  body: { email: string, password: string }
-  user?: { email: string }
-  cookies?: { access_token?: string }
-}
-
-interface Response {
-  status: (code: number) => {
-    send: (body: any) => void
-    json: (body: any) => void
-  }
-  cookie: (name: string, value: string, options: Record<string, any>) => void
-  clearCookie: (name: string) => void
-  json: (body: any) => void
-}
-
-interface User {
-  token: string
-  email: string
-  password: string,
-}
 
 export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body
 
-  const validate = validationErrors(email, password)
-
-  if (Object.keys(validate).length > 0) {
-    return res.status(400).send(validate)
-  }
-
   try {
 
-    const checkCreds = await AuthSesion.checkCredentials(email, password)
-    if (!checkCreds) return res.status(400).send({ message: 'Invalid credentials' })
-
-    const user = await AuthSesion.login(email, password) as User
+    const user = await AuthService.login(email, password)
     const { token } = user
 
-    res.cookie('access_token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 1000 * 120 * 120
-    })
-
-    res.status(200).send({ message: 'Login successful' })
-
+     res
+      .cookie('access_token', token, {
+        httpOnly: true, // Evitar acceso desde JavaScript
+        secure: process.env.NODE_ENV === 'development', // Solo HTTPS en producción
+        sameSite: 'strict',
+      })
+      .status(200)
+      .send({ message: 'Login successfull' });
   }
   
   catch (error) {
-    console.error('Login error')
-    res.status(500).send({ message: 'Server error' })
+    console.error('Login error: ', error)
+    res.status(500).send({ message: 'Internal Server Error' })
   }
 
 }
@@ -62,7 +31,7 @@ export const profile = async (req: any, res: Response) => {
   const { email } = req.user
 
   try {
-    const userProfile = await AuthSesion.profile(email)
+    const userProfile = await AuthService.profile(email)
 
     if (!userProfile) return res.status(401).json({ message: 'User not found' })
 
@@ -71,7 +40,7 @@ export const profile = async (req: any, res: Response) => {
 
   catch (error) {
     console.error('Profile error: ', error)
-    res.status(500).json({ message: 'Server error' })
+    res.status(500).json({ message: 'Internal Server Error' })
   }
 }
 

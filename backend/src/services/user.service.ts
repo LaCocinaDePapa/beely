@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import bcrypt from 'bcrypt'
 import prisma from '../prismaService'
+import { validationErrors } from '../utils/validations.ts'
 
 class User {
   static async existingUser(email: string) {
@@ -24,7 +25,13 @@ class User {
 
     try {
 
-      const existingUser = await User.existingUser(email)
+      const validate = validationErrors(email, password)
+
+      if (Object.keys(validate).length > 0) {
+        return validate
+      }
+
+      const existingUser = await this.existingUser(email)
 
       if (existingUser) {
         throw new Error('User already exists')
