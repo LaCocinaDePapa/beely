@@ -6,10 +6,7 @@ class User {
 
     try {
 
-      const query = 'SELECT email FROM users WHERE email = $1'
-      const result = await pool.query(query, [email])
-
-      return result.rows[0]
+      // db request
     }
     
     catch (error) {
@@ -25,10 +22,8 @@ class User {
       const hashedPassword = await bcrypt.hash(password, 10)
       password = hashedPassword
 
-      const query = 'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email'
-      const result = await pool.query(query, [name, email, password])
+      // db request
 
-      return result.rows[0]
     }
     
     catch (error) {
