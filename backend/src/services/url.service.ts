@@ -56,7 +56,7 @@ class UrlService {
 
   }
 
-  static async redirectShortUrl (shortCode: string) {
+  static async redirectShortenedUrl (shortCode: string) {
 
     try {
       const urlRecord = await prisma.url.findUnique({
@@ -67,7 +67,7 @@ class UrlService {
         throw new Error('Shortened URL not found')
       }
 
-      return urlRecord
+      return urlRecord.originalUrl
     }
     
     catch (error) {

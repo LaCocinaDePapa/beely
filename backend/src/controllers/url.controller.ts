@@ -23,17 +23,14 @@ export const shortUrl = async (req: Request, res: Response) => {
 
 }
 
-export const redirectShortUrl = async (req: Request, res: Response) => {
+export const redirectShortenedUrl = async (req: Request, res: Response) => {
 
   try {
     const { shortCode } = req.params
 
-    const result = await UrlService.redirectShortUrl(shortCode)
+    const originalUrl = await UrlService.redirectShortenedUrl(shortCode)
 
-    const url = result.original_url
-    if (!url) return res.status(404).send({ message: 'URL not found' })
-
-    return res.redirect(url)
+    return res.redirect(originalUrl)
   }
   
   catch (error) {
