@@ -1,2 +1,2 @@
 BEEURL - ENHANCE YOUR LINK MANAGEMENT
-# beely
+# beelshort
