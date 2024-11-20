@@ -1,9 +1,8 @@
 /* eslint-disable camelcase */
 import User from '../services/user.service'
-import { Request, Response } from 'express'
 
 
-export const register = async (req: Request, res: Response) => {
+export const register = async (req: any, res: any) => {
 
   const { name, email, password } = req.body
 

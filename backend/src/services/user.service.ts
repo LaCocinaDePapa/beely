@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import bcrypt from 'bcrypt'
 import prisma from '../prismaService'
-import { validationErrors } from '../utils/validations.ts'
+import { validationErrors } from '../utils/validations'
 
 class User {
   static async existingUser(email: string) {

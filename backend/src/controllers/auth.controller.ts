@@ -1,8 +1,7 @@
-import { Request, Response } from 'express'
-import AuthService from '../services/auth.service.ts'
+import AuthService from '../services/auth.service'
 
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (req: any, res: any) => {
   const { email, password } = req.body
 
   try {
@@ -11,8 +10,8 @@ export const login = async (req: Request, res: Response) => {
 
      res
       .cookie('access_token', user_token, {
-        httpOnly: true, // Evitar acceso desde JavaScript
-        secure: process.env.NODE_ENV === 'development', // Solo HTTPS en producción
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'development',
         sameSite: 'strict',
       })
       .status(200)
@@ -26,8 +25,8 @@ export const login = async (req: Request, res: Response) => {
 
 }
 
-export const profile = async (req: any, res: Response) => {
-  const { email } = req.user
+export const profile = async (req: any, res: any) => {
+  const email = req.user?.email
 
   try {
     const userProfile = await AuthService.getProfile(email)
@@ -41,7 +40,7 @@ export const profile = async (req: any, res: Response) => {
   }
 }
 
-export const logout = async (req: Request, res: Response) => {
+export const logout = async (req: any, res: any) => {
   const token = req.cookies?.access_token
 
   if (!token) return res.json({ message: 'Session already closed' })

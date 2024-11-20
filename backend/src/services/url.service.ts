@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid'
+import { v4 as uuidv4 } from "uuid"
 import prisma from '../prismaService'
 
 
@@ -36,7 +36,7 @@ class UrlService {
       url = `https://${url}`
     }
 
-    const shortCode = nanoid(7)
+    const shortCode = uuidv4().slice(0, 7)
 
     try {
       const newUrl = await prisma.url.create({

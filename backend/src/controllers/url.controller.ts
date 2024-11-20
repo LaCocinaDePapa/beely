@@ -1,16 +1,19 @@
-import { Request, Response } from "express"
 import UrlService from '../services/url.service'
 
 
-export const shortUrl = async (req: Request, res: Response) => {
+export const shortUrl = async (req: any, res: any) => {
+    const { originalUrl } = req.body
+    const ownerId = req.user?.id
+
+    if (!ownerId) {
+      return res.status(400).send({ message: 'User not authenticated' })
+    }
+
+    if (!originalUrl) {
+      return res.status(400).send({ message: 'Original URL is required' })
+    }
 
   try {
-    const { originalUrl } = req.body
-    const { id: ownerId } = req.user
-
-    if (!ownerId) return res.status(400).send({ message: 'ID is required' })
-    if (!originalUrl) return res.status(400).send({ message: 'Original URL is required' })
-
     const short = await UrlService.shortUrl(originalUrl, ownerId)
 
     return res.status(200).json({ result: short })
@@ -23,7 +26,7 @@ export const shortUrl = async (req: Request, res: Response) => {
 
 }
 
-export const redirectShortenedUrl = async (req: Request, res: Response) => {
+export const redirectShortenedUrl = async (req: any, res: any) => {
 
   try {
     const { shortCode } = req.params

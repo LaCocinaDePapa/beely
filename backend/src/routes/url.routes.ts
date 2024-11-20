@@ -1,6 +1,6 @@
 import express from 'express'
-import { shortUrl, redirectShortenedUrl } from '../controllers/url.controller.ts'
-import authenticate from '../middleware/authenticate.ts'
+import { shortUrl, redirectShortenedUrl } from '../controllers/url.controller'
+import authenticate from '../middleware/authenticate'
 
 const router = express.Router()
 
