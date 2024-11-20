@@ -13,10 +13,6 @@ class UrlService {
         }
       })
 
-      if (!existingUrl) {
-        throw new Error('Url already shortened')
-      }
-
       return existingUrl
     }
     
@@ -27,6 +23,12 @@ class UrlService {
   }
 
   static async shortUrl (originalUrl: string, ownerId: number) {
+    const existingUrl = await this.existingUrl(originalUrl, ownerId)
+
+    if (existingUrl) {
+      throw new Error('URL is already shortened')
+    }
+
     const urlPattern = /^https?:\/\//
     let url = originalUrl.trim()
 
@@ -40,7 +42,7 @@ class UrlService {
       const newUrl = await prisma.url.create({
         data: {
           originalUrl: url,
-          shortUrl: shortCode,
+          shortenedUrl: shortCode,
           userId: ownerId
         }
       })
