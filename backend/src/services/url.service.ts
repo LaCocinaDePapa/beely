@@ -60,7 +60,7 @@ class UrlService {
 
     try {
       const urlRecord = await prisma.url.findUnique({
-        where: { shortUrl: shortCode }
+        where: { shortenedUrl: shortCode }
       })
 
       if (!urlRecord) {
