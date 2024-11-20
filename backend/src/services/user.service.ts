@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import prisma from '../prismaService'
 
 class User {
-  static async userExists(email: string) {
+  static async existingUser(email: string) {
 
     try {
       // db request
@@ -23,6 +23,13 @@ class User {
   static async create(name: string, email: string, password: string) {
 
     try {
+
+      const existingUser = await User.existingUser(email)
+
+      if (existingUser) {
+        throw new Error('User already exists')
+      }
+
       const hashedPassword = await bcrypt.hash(password, 10)
 
       // db request
@@ -35,7 +42,6 @@ class User {
       })
 
       return user
-
     }
     
     catch (error) {
