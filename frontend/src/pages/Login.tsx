@@ -31,7 +31,7 @@ export const Login = () => {
         className="flex flex-col items-center justify-center px-6 mx-auto mt-8 lg:mt-24 md:mt-24"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: "linear" }}
+        transition={{ duration: 0.4, ease: "easeIn" }}
       >
         <a
           href="/"
