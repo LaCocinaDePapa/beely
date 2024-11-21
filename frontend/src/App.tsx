@@ -17,7 +17,7 @@ const App = () => {
       className="grid max-w-screen min-h-dvh"
       style={{ gridTemplateRows: "auto 1fr auto" }}
     >
-      <div className="absolute top-0 z-[-2] h-screen w-screen bg-neutral-100 dark:bg-neutral-900 text-black dark:text-white"></div>
+      <div className="absolute top-0 z-[-2] h-screen w-screen bg-neutral-100 dark:bg-neutral-900 text-black dark:text-white transition-all ease-in-out duration-150"></div>
       <Navbar />
       <Routes>
         {/* Public routes */}

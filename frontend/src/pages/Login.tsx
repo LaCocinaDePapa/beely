@@ -40,7 +40,7 @@ export const Login = () => {
           <img className="size-14" src="/bee.svg" alt="logo" />
           bee.ly
         </a>
-        <div className="w-full bg-transparent border rounded-lg shadow lg:w-[600px] md:w-[600px] border-neutral-800">
+        <div className="w-full bg-transparent border rounded-xl shadow lg:w-[600px] md:w-[600px] border-neutral-200 dark:border-neutral-800">
           <div className="p-4 space-y-4 lg:p-8 md:space-y-6">
             <h1 className="text-2xl font-bold leading-tight tracking-tight text-gray-900 lg:text-3xl dark:text-white">
               Welcome back
