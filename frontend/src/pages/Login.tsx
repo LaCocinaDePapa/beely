@@ -43,7 +43,7 @@ export const Login = () => {
         <div className="w-full bg-transparent border rounded-xl shadow lg:w-[600px] md:w-[600px] border-neutral-200 dark:border-neutral-800">
           <div className="p-4 space-y-4 lg:p-8 md:space-y-6">
             <h1 className="text-2xl font-bold leading-tight tracking-tight text-gray-900 lg:text-3xl dark:text-white">
-              Welcome back
+              Welcome back again! 🎉
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
@@ -107,7 +107,7 @@ export const Login = () => {
               </div>
 
               <Button variant="gradient" type="submit" className="w-full py-2 text-lg rounded-full">
-                Sign in to your account
+                Log in to your account
               </Button>
 
               <p className="text-base font-light text-gray-500 dark:text-gray-400">
