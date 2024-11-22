@@ -8,7 +8,7 @@ export const Footer = () => {
         <div className="inline-flex items-center gap-1">
           Made with <span className="text-red-600"><FaHeart /></span> by <a className="hover:underline hover:opacity-85" href="https://github.com/LaCocinaDePapa" target='_blank' rel='noopener noreferer'>LaCocinaDePapa</a>
         </div>
-        <div>
+        <div className="flex gap-1.5">
           © 2024
           <a 
             href="https://github.com/302FoundDev" 

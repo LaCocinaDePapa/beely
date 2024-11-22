@@ -19,6 +19,7 @@ export const Login = () => {
       email: formData.get('email') as string,
       password: formData.get('password') as string
     }
+
     const { email, password } = fields
 
     await signin({ email, password })
@@ -28,7 +29,7 @@ export const Login = () => {
     <section>
       <motion.div
 
-        className="flex flex-col items-center justify-center px-6 mx-auto mt-8 lg:mt-24 md:mt-24"
+        className="flex flex-col items-center justify-center min-h-screen px-6 mx-auto mt-8 lg:mt-24 md:mt-24"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeIn" }}
