@@ -7,17 +7,12 @@ interface User {
   email: string
 }
 
-interface AuthData {
-  email: string,
-  password: string
-}
-
 interface AuthContextType {
-  user: User | null
-  isAuthenticated: boolean
-  signin: (data: AuthData) => Promise<void>
-  signup: (data: AuthData) => Promise<void>
-  signout: () => Promise<void>
+  user: User | null;
+  isAuthenticated: boolean;
+  signin: (data: any) => Promise<void>;
+  signup: (data: any) => Promise<void>;
+  signout: () => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null)
@@ -33,7 +28,7 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-export function AuthProvider({ children }: AuthProviderProps) {
+export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
@@ -41,7 +36,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const API_URL = import.meta.env.VITE_API_URL || ''
   const API_USER_URL = import.meta.env.VITE_API_USER_URL || ''
 
-  const signin = async (data: AuthData) => {
+  const signin = async (data: any) => {
     try {
       const response = await fetch(`${API_URL}/signin`, {
         method: 'POST',
@@ -64,7 +59,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
-  const signup = async (data: AuthData) => {
+  const signup = async (data: any) => {
     try {
       const response = await fetch(`${API_USER_URL}/signup`, {
         method: 'POST',

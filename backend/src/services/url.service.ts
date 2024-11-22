@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid"
-import prisma from '../prismaService'
+import prisma from '../models/prismaService'
 
 
 class UrlService {

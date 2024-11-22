@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import bcrypt from 'bcrypt'
-import prisma from '../prismaService'
+import prisma from '../models/prismaService'
 import { validationErrors } from '../utils/validations'
 
 class User {

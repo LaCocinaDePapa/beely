@@ -16,10 +16,10 @@ export const Register = () => {
     }
   }, [isAuthenticated])
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault()
+  const handleSubmit = async (event: any) => {
+    event.preventDefault()
 
-    const fields = Object.fromEntries(new FormData(e.currentTarget))
+    const fields = Object.fromEntries(new FormData(event.currentTarget))
     const { name, email, password } = fields
 
     await signup({ name, email, password })
@@ -37,13 +37,12 @@ export const Register = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "linear" }}
       >
-        <a
-          href="/"
-          className="flex items-center mb-6 text-3xl text-gray-900 dark:text-white"
+        <Link
+          to="/"
+          className="flex items-center mb-6 text-3xl text-gray-900 transition ease-linear hover:opacity-70 dark:text-white"
         >
-          <img className="size-14" src="/bee.svg" alt="logo" />
-          bee.ly
-        </a>
+          <img className="size-12" src="/bee.svg" alt="logo" />
+        </Link>
         <div className="w-full lg:w-[600px] md:w-[600px] bg-transparent border rounded-xl shadow border-neutral-200 dark:border-neutral-800">
           <div className="p-4 space-y-4 lg:p-8 md:space-y-6">
             <h1 className="text-2xl font-bold leading-tight tracking-tight text-gray-900 lg:text-3xl dark:text-white">

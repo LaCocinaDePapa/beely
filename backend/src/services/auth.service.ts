@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import prisma from '../prismaService'
+import prisma from '../models/prismaService'
 
 export default class AuthService {
 

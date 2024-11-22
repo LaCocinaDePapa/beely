@@ -29,18 +29,18 @@ export const Login = () => {
     <section>
       <motion.div
 
-        className="flex flex-col items-center justify-center min-h-screen px-6 mx-auto mt-8 lg:mt-24 md:mt-24"
+        className="flex flex-col items-center justify-center px-6 mx-auto mt-8 lg:mt-24 md:mt-24"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeIn" }}
       >
-        <a
-          href="/"
-          className="flex items-center mb-6 text-3xl font-semibold text-gray-900 dark:text-white"
+        <Link
+          to="/"
+          className="flex items-center mb-6 text-3xl font-semibold text-gray-900 transition ease-linear hover:opacity-70 dark:text-white"
         >
-          <img className="size-14" src="/bee.svg" alt="logo" />
-          bee.ly
-        </a>
+          <img className="size-12" src="/bee.svg" alt="logo" />
+          
+        </Link>
         <div className="w-full bg-transparent border rounded-xl shadow lg:w-[600px] md:w-[600px] border-neutral-200 dark:border-neutral-800">
           <div className="p-4 space-y-4 lg:p-8 md:space-y-6">
             <h1 className="text-2xl font-bold leading-tight tracking-tight text-gray-900 lg:text-3xl dark:text-white">
