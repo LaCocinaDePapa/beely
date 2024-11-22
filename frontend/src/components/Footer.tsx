@@ -16,9 +16,9 @@ export const Footer = () => {
             rel="noopener"
             target="_blank"
           >
-            302foundev
+            302foundev.
           </a>
-          . Almost all rights reserved
+           Almost all rights reserved
         </div>
         <div>
           <a
