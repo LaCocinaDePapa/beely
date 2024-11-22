@@ -34,7 +34,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // Reemplaza process.env por import.meta.env
   const API_URL = import.meta.env.VITE_API_URL || ''
-  const API_USER_URL = import.meta.env.VITE_API_USER_URL || ''
+  const API_USER_URL = import.meta.env.VITE_API_USER_URL || 'http://localhost:5000/api'
 
   const signin = async (data: any) => {
     try {
