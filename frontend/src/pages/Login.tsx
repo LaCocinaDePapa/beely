@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useAuth } from "../context/AuthContext"
 import { Link, Navigate } from "react-router-dom"
 import { Button } from "../components/ui/Button"
