@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 
 export const Register = () => {
-  const { isAuthenticated, signup } = useAuth()
+  const { isAuthenticated, signup, signin } = useAuth()
   const [redirectToDashboard, setRedirectToDashboard] = useState(false)
 
 
@@ -23,6 +23,7 @@ export const Register = () => {
     const { name, email, password } = fields
 
     await signup({ name, email, password })
+    await signin({ email, password })
   }
 
   if (redirectToDashboard) {

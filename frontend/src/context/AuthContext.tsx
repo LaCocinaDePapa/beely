@@ -24,17 +24,13 @@ export const useAuth = () => {
   return context
 }
 
-interface AuthProviderProps {
-  children: ReactNode;
-}
-
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   // Reemplaza process.env por import.meta.env
-  const API_URL = import.meta.env.VITE_API_URL || ''
-  const API_USER_URL = import.meta.env.VITE_API_USER_URL || 'http://localhost:5000/api'
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/auth'
+  const API_USER_URL = import.meta.env.VITE_API_USER_URL || 'http://localhost:5000/api/user'
 
   const signin = async (data: any) => {
     try {
